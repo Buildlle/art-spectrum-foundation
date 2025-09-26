@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db, contentBlocks } from '@/lib/db';
-import { eq, and } from 'drizzle-orm';
+import { eq } from 'drizzle-orm';
 
 // GET all content blocks or by page
 export async function GET(request: NextRequest) {

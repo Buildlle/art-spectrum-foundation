@@ -13,7 +13,7 @@ export default function EditModeToolbar() {
 
   // Only show for authenticated admins
   if (status === 'loading') return null;
-  if (!session || (session.user as any)?.role !== 'admin') return null;
+  if (!session || (session.user as { role?: string })?.role !== 'admin') return null;
 
   const toggleEditMode = () => {
     const params = new URLSearchParams(searchParams);

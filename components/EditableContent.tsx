@@ -10,8 +10,8 @@ interface EditableContentProps {
   page: string;
   position?: string;
   className?: string;
-  as?: keyof JSX.IntrinsicElements;
-  metadata?: any;
+  as?: keyof React.JSX.IntrinsicElements;
+  metadata?: Record<string, unknown>;
 }
 
 export default function EditableContent({
@@ -134,7 +134,7 @@ export default function EditableContent({
       <div className={`relative group ${isEditMode ? 'cursor-pointer' : ''}`}>
         <img
           src={content}
-          alt={metadata?.alt || ''}
+          alt={(metadata?.alt as string) || ''}
           className={className}
           onClick={handleClick}
         />

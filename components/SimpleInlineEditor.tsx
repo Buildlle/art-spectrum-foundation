@@ -8,7 +8,7 @@ export default function SimpleInlineEditor() {
   const { data: session } = useSession();
   const searchParams = useSearchParams();
   const isEditMode = searchParams.get('edit') === 'true';
-  const isAdmin = (session?.user as any)?.role === 'admin';
+  const isAdmin = (session?.user as { role?: string })?.role === 'admin';
   const [editingElement, setEditingElement] = useState<HTMLElement | null>(null);
   const [editValue, setEditValue] = useState('');
 

@@ -5,10 +5,10 @@ import { eq } from 'drizzle-orm';
 // GET specific content block by key
 export async function GET(
   request: NextRequest,
-  { params }: { params: { key: string } }
+  { params }: { params: Promise<{ key: string }> }
 ) {
   try {
-    const { key } = params;
+    const { key } = await params;
     const content = await db.select().from(contentBlocks).where(eq(contentBlocks.key, key));
 
     if (content.length === 0) {
@@ -25,10 +25,10 @@ export async function GET(
 // DELETE content block
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { key: string } }
+  { params }: { params: Promise<{ key: string }> }
 ) {
   try {
-    const { key } = params;
+    const { key } = await params;
     const deleted = await db.delete(contentBlocks).where(eq(contentBlocks.key, key)).returning();
 
     if (deleted.length === 0) {

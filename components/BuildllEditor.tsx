@@ -15,7 +15,7 @@ export default function BuildllEditor() {
   const { data: session, status } = useSession();
   const searchParams = useSearchParams();
   const isEditMode = searchParams.get('edit') === 'true';
-  const isAdmin = (session?.user as any)?.role === 'admin';
+  const isAdmin = (session?.user as { role?: string })?.role === 'admin';
 
   const [editingElement, setEditingElement] = useState<EditableElement | null>(null);
   const [editValue, setEditValue] = useState('');

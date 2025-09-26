@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Suspense } from "react";
 import { AuthProvider } from "@/lib/auth-provider";
 import EditModeToolbar from "@/components/EditModeToolbar";
 import BuildllEditor from "@/components/BuildllEditor";
@@ -33,8 +34,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <AuthProvider>
-          <EditModeToolbar />
-          <BuildllEditor />
+          <Suspense fallback={null}>
+            <EditModeToolbar />
+            <BuildllEditor />
+          </Suspense>
           <ConditionalLayout>
             {children}
           </ConditionalLayout>

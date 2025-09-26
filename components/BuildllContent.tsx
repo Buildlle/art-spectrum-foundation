@@ -9,7 +9,7 @@ interface BuildllContentProps {
   text: string;
   type: 'text' | 'image' | 'link';
   className?: string;
-  as?: keyof JSX.IntrinsicElements;
+  as?: keyof React.JSX.IntrinsicElements;
   page?: string;
   children?: React.ReactNode;
 }
@@ -26,7 +26,7 @@ export default function BuildllContent({
   const { data: session } = useSession();
   const searchParams = useSearchParams();
   const isEditMode = searchParams.get('edit') === 'true';
-  const isAdmin = (session?.user as any)?.role === 'admin';
+  const isAdmin = (session?.user as { role?: string })?.role === 'admin';
   const [currentText, setCurrentText] = useState(text);
 
   // Only show edit capabilities to admins in edit mode

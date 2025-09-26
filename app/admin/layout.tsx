@@ -21,7 +21,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
     return <div className="flex items-center justify-center min-h-screen bg-slate-50">Loading...</div>;
   }
 
-  if (!session || (session.user as any)?.role !== 'admin') {
+  if (!session || (session.user as { role?: string })?.role !== 'admin') {
     redirect('/admin/login');
   }
 
